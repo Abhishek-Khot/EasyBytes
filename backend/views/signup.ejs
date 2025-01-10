@@ -15,7 +15,7 @@
     let countdownTime = 60; // 60 seconds
 
     (function () {
-      emailjs.init("gtEjh_0idYRMGmPWh");
+      emailjs.init("gtEjRMGmPWh");
     })();
 
     function generateCode() {
@@ -56,8 +56,8 @@
         message: `Signup Notification from SmartTrack to ${name}`,
       };
 
-      const serviceID = "service_1zek657";
-      const templateID = "template_jbg6gk1";
+      const serviceID = "";
+      const templateID = "template_jb";
 
       emailjs
         .send(serviceID, templateID, params)
@@ -89,6 +89,7 @@
   <div class="w-full max-w-md mx-4 overflow-hidden rounded-lg shadow-2xl bg-white/95 backdrop-blur-sm">
     <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-6 text-center">
       <h1 class="text-2xl font-bold mb-2">SmartTrack</h1>
+      <p>Due to security reasons, I didn’t add the service ID, template ID, and API key in the code above. However, you can add these values in the respective places. I used EmailJS to send the verification code via email.</p>
       <p class="text-white/90 text-sm">Create your account to get started</p>
     </div>
     <div class="p-8 -mt-6">
