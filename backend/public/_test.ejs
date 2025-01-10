@@ -1,0 +1,123 @@
+about.ejs
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Update About</title>
+</head>
+<body>
+  <h1>Update About Section</h1>
+  <form action="/dashboard/about" method="POST">
+    <label for="description">Description:</label>
+    <textarea id="description" name="description"><%= about.description %></textarea><br>
+
+    <label for="skillset">Skillset (comma-separated):</label>
+    <input type="text" id="skillset" name="skillset" value="<%= about.skillset.join(', ') %>"><br>
+
+    <label for="tools">Tools (comma-separated):</label>
+    <input type="text" id="tools" name="tools" value="<%= about.tools.join(', ') %>"><br>
+
+    <button type="submit">Update</button>
+  </form>
+</body>
+</html>
+
+blog.ejs 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Update Blogs</title>
+</head>
+<body>
+  <h1>Add New Blog</h1>
+  <form action="/dashboard/blogs" method="POST">
+    <label for="topic">Topic:</label>
+    <input type="text" id="topic" name="topic" required><br>
+
+    <label for="technology">Technology:</label>
+    <input type="text" id="technology" name="technology" required><br>
+
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required><br>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required></textarea><br>
+
+    <button type="submit">Add Blog</button>
+  </form>
+</body>
+</html>
+
+home.ejs 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Homepage Form</title>
+  </head>
+  <body>
+    <h1>Update Homepage Data</h1>
+    <form action="/dashboard/homepage" method="POST">
+      <label for="portfolioName">Portfolio Name:</label>
+      <input
+        type="text"
+        id="portfolioName"
+        name="portfolioName"
+        required
+      /><br />
+
+      <label for="userName">User Name:</label>
+      <input type="text" id="userName" name="userName" required /><br />
+
+      <label for="expertise">Expertise (comma-separated):</label>
+      <input type="text" id="expertise" name="expertise" required /><br />
+
+      <button type="submit">Save</button>
+    </form>
+    <button><a href="/dashboard">Already Have Profile</a></button>
+  </body>
+</html>
+
+project.ejs 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Update Projects</title>
+</head>
+<body>
+  <h1>Add New Project</h1>
+  <form action="/dashboard/projects" method="POST">
+    <label for="photo">Photo URL:</label>
+    <input type="text" id="photo" name="photo" required><br>
+
+    <label for="name">Project Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required></textarea><br>
+
+    <label for="githubLink">GitHub Link:</label>
+    <input type="text" id="githubLink" name="githubLink" required><br>
+
+    <button type="submit">Add Project</button>
+  </form>
+</body>
+</html>
+
+resume.ejs 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Update Resume</title>
+</head>
+<body>
+  <h1>Update Resume</h1>
+  <form action="/dashboard/resume" method="POST">
+    <label for="filePath">Resume File Path:</label>
+    <input type="text" id="filePath" name="filePath" value="<%= resume.filePath %>"><br>
+
+    <button type="submit">Update</button>
+  </form>
+</body>
+</html>
+
+

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Combined Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const elementsToToggle = document.querySelectorAll('nav, section, header, label');
+
+      // Toggle the main theme classes for the body
+      body.classList.toggle('bg-gray-800');
+      body.classList.toggle('bg-gray-100');
+      body.classList.toggle('text-gray-100');
+      body.classList.toggle('text-gray-800');
+
+      // Toggle theme classes for specific elements
+      elementsToToggle.forEach((el) => {
+        el.classList.toggle('bg-gray-900');
+        el.classList.toggle('bg-white');
+        el.classList.toggle('text-gray-100');
+        el.classList.toggle('text-gray-800');
+      });
+    }
+
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('section');
+      sections.forEach((section) => {
+        section.classList.add('hidden');
+      });
+      document.getElementById(sectionId).classList.remove('hidden');
+    }
+  </script>
+</head>
+<body class="bg-gray-800 text-gray-100">
+  <div class="container mx-auto p-6">
+    <!-- Header -->
+    <header class="flex items-center justify-between py-4 bg-gray-900 shadow-md rounded-md">
+        <h1 class="text-3xl font-bold">&nbsp; Hi <span class="text-blue-400"><%= user.name %></span>, Here you can Update and Add the Information!</h1>
+        <div class="flex items-center space-x-6">
+          <!-- Theme Toggle Button -->
+          <button onclick="toggleTheme()" class="p-2 rounded bg-yellow-400 hover:bg-yellow-500 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8-8h1m-16 0H3m15.364 6.364l-.707-.707m-11.314 0l-.707.707m12.021-12.021l-.707-.707m-11.314 0l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </button>
+          <form action="/logout" method="POST" class="inline">
+            <button type="submit" 
+                    class="text-white bg-red-500 px-4 py-2 rounded hover:bg-red-600">
+              Logout
+            </button>
+          </form>
+          
+        </div>
+      </header>
+
+    <!-- Navigation -->
+    <nav class="bg-gray-900 shadow-md rounded-md p-4 mb-6">
+      <ul class="flex space-x-4">
+        <li><button onclick="showSection('home')" class="text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-700">Home</button></li>
+        <li><button onclick="showSection('about')" class="text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-700">About</button></li>
+        <li><button onclick="showSection('projects')" class="text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-700">Projects</button></li>
+        <li><button onclick="showSection('blogs')" class="text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-700">Blogs</button></li>
+        <li><button onclick="showSection('resume')" class="text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-700">Resume</button></li>
+      </ul>
+    </nav>
+
+    <!-- Sections -->
+    <section id="home" class="bg-gray-900 shadow-md rounded-md p-6">
+      <h2 class="text-xl font-semibold mb-4">Home Section</h2>
+      <form action="/dashboard/home" method="POST">
+        <label for="portfolioName" class="block mb-2">Portfolio Name:</label>
+        <input type="text" id="portfolioName" name="portfolioName" class="w-full mb-4 p-2 rounded bg-white text-black border-2 border-gray-300">
+
+        <label for="userName" class="block mb-2">User Name:</label>
+        <input type="text" id="userName" name="userName" class="w-full mb-4 p-2 rounded bg-white text-black border-2 border-gray-300">
+
+        <label for="expertise" class="block mb-2">Expertise (comma-separated):</label>
+        <input type="text" id="expertise" name="expertise" class="w-full mb-4 p-2 rounded bg-white text-black border-2 border-gray-300">
+
+        <button type="submit" class="bg-blue-500 px-4 py-2 rounded text-white hover:bg-blue-700">Update</button>
+      </form>
+    </section>
+
+    <section id="about" class="bg-gray-900 shadow-md rounded-md p-6 hidden">
+      <h2 class="text-xl font-semibold mb-4">About Section</h2>
+      <form action="/dashboard/about" method="POST">
+        <label for="description" class="block mb-2">Description:</label>
+        <textarea id="description" name="description" class="w-full mb-4 p-2 rounded bg-white text-black border-2 border-gray-300"></textarea>
+
+        <label for="skillset" class="block mb-2">Skillset (comma-separated):</label>
+        <input type="text" id="skillset" name="skillset" class="w-full mb-4 p-2 rounded bg-white text-black border-2 border-gray-300">
+
+        <label for="tools" class="block mb-2">Tools (comma-separated):</label>
+        <input type="text" id="tools" name="tools" class="w-full mb-4 p-2 rounded bg-white text-black border-2 border-gray-300">
+
+        <button type="submit" class="bg-blue-500 px-4 py-2 rounded text-white hover:bg-blue-700">Update</button>
+      </form>
+    </section>
+
+    <section id="projects" class="bg-gray-900 shadow-md rounded-md p-6 hidden">
+      <h2 class="text-xl font-semibold mb-4">Projects Section</h2>
+      <form action="/dashboard/projects" method="POST" enctype="multipart/form-data">
+        <label for="projectPhoto" class="block mb-2">Upload Project Photo:</label>
+        <input type="file" id="projectPhoto" name="projectPhoto" accept="image/*" class="w-full mb-4 p-2 rounded bg-white text-black border-2 border-gray-300">
+
+        <label for="name" class="block mb-2">Project Name:</label>
+        <input type="text" id="name" name="name" class="w-full mb-4 p-2 rounded bg-white text-black border-2 border-gray-300">
+
+        <label for="description" class="block mb-2">Description:</label>
+        <textarea id="description" name="description" class="w-full mb-4 p-2 rounded bg-white text-black border-2 border-gray-300"></textarea>
+
+        <label for="githubLink" class="block mb-2">GitHub Link:</label>
+        <input type="url" id="githubLink" name="githubLink" class="w-full mb-4 p-2 rounded bg-white text-black border-2 border-gray-300">
+
+        <button type="submit" class="bg-blue-500 px-4 py-2 rounded text-white hover:bg-blue-700">Add Project</button>
+      </form>
+    </section>
+
+    <section id="blogs" class="bg-gray-900 shadow-md rounded-md p-6 hidden">
+      <h2 class="text-xl font-semibold mb-4">Blogs Section</h2>
+      <form action="/dashboard/blogs" method="POST">
+        <label for="topic" class="block mb-2">Topic:</label>
+        <input type="text" id="topic" name="topic" class="w-full mb-4 p-2 rounded bg-white text-black border-2 border-gray-300">
+
+        <label for="technology" class="block mb-2">Technology:</label>
+        <input type="text" id="technology" name="technology" class="w-full mb-4 p-2 rounded bg-white text-black border-2 border-gray-300">
+
+        <label for="title" class="block mb-2">Title:</label>
+        <input type="text" id="title" name="title" class="w-full mb-4 p-2 rounded bg-white text-black border-2 border-gray-300">
+
+        <label for="description" class="block mb-2">Description:</label>
+        <textarea id="description" name="description" class="w-full mb-4 p-2 rounded bg-white text-black border-2 border-gray-300"></textarea>
+
+        <button type="submit" class="bg-blue-500 px-4 py-2 rounded text-white hover:bg-blue-700">Add Blog</button>
+      </form>
+    </section>
+
+    <section id="resume" class="bg-gray-900 shadow-md rounded-md p-6 hidden">
+      <h2 class="text-xl font-semibold mb-4">Resume Section</h2>
+      <form action="/dashboard/resume" method="POST" enctype="multipart/form-data">
+        <label for="resumePhoto" class="block mb-2">Upload Resume:</label>
+        <input type="file" id="resumePhoto" name="resumePhoto" accept="image/*,application/pdf" class="w-full mb-4 p-2 rounded bg-white text-black border-2 border-gray-300">
+
+        <button type="submit" class="bg-blue-500 px-4 py-2 rounded text-white hover:bg-blue-700">Update</button>
+      </form>
+    </section>
+  </div>
+</body>
+</html>

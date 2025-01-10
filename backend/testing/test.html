@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="container mx-auto p-6 flex gap-6">
+    <!-- Left Section -->
+    <aside class="w-1/4 bg-white shadow-md rounded-md p-6">
+      <img src="https://via.placeholder.com/300" alt="Profile Picture" class="w-72 h-72 rounded-full mx-auto mb-4 mt-6">
+      <h2 class="text-xl font-semibold text-center">Abhishek Khot</h2>
+      <p class="text-sm text-gray-600 text-center mb-4">A passionate full-stack developer from India.</p>
+    </aside>
+    
+
+    <!-- Main Content -->
+    <div class="w-3/4">
+      <!-- Header -->
+      <header class="flex items-center justify-between py-4">
+        <h1 class="text-3xl font-bold">Welcome, <span class="text-blue-500">Abhishek</span>!</h1>
+        <a href="/logout" class="text-white bg-red-500 px-4 py-2 rounded hover:bg-red-600">Logout</a>
+      </header>
+
+      <!-- Navigation -->
+      <nav class="bg-white shadow-md rounded-md p-4 mb-6">
+        <ul class="flex space-x-4">
+          <li><a href="/dashboard/home" class="text-blue-500 hover:underline">Home</a></li>
+          <li><a href="/dashboard/about" class="text-blue-500 hover:underline">About</a></li>
+          <li><a href="/dashboard/projects" class="text-blue-500 hover:underline">Projects</a></li>
+          <li><a href="/dashboard/blogs" class="text-blue-500 hover:underline">Blogs</a></li>
+          <li><a href="/dashboard/resume" class="text-blue-500 hover:underline">Resume</a></li>
+        </ul>
+      </nav>
+
+      <!-- Expertise Section -->
+      <section class="bg-white shadow-md rounded-md p-6 mb-6">
+        <h2 class="text-xl font-semibold mb-4">Your Expertise</h2>
+        <div class="flex flex-wrap gap-2">
+          <button class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm hover:bg-yellow-200 transition">Java</button>
+          <button class="bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm hover:bg-red-200 transition">Web Development</button>
+          <button class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm hover:bg-green-200 transition">Competitive Programming</button>
+        </div>
+      </section>
+
+      <!-- Skillset Section -->
+      <section class="bg-white shadow-md rounded-md p-6 mb-6">
+        <h2 class="text-xl font-semibold mb-4">Your Skillset</h2>
+        <div class="flex flex-wrap gap-2">
+          <button class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm hover:bg-blue-200 transition">React</button>
+          <button class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm hover:bg-purple-200 transition">Node.js</button>
+          <button class="bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm hover:bg-orange-200 transition">MongoDB</button>
+          <button class="bg-pink-100 text-pink-800 px-4 py-2 rounded-full text-sm hover:bg-pink-200 transition">CSS</button>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="bg-white shadow-md rounded-md p-6">
+        <h2 class="text-xl font-semibold mb-4">About You</h2>
+        <p class="text-gray-600">Hello there! I am a student at Jain College of Engineering and Research, with a passion for Java development, web development, and competitive programming.</p>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
+
+Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum ducimus fugit deleniti amet, distinctio reiciendis autem magnam qui iste? At laboriosam officiis in iste voluptatum unde quas ipsam delectus suscipit.

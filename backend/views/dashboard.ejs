@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="icon" href="https://i.postimg.cc/yx0pwgzw/DALL-E-2025-01-09-23-38-57-A-sleek-and-modern-logo-design-for-a-website-named-Smart-Track-The-lo.webp">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const elementsToToggle = document.querySelectorAll('nav, section, header, aside, .about-content');
+
+      // Toggle the main theme classes for the body
+      body.classList.toggle('bg-gray-800');
+      body.classList.toggle('bg-gray-100');
+      body.classList.toggle('text-gray-100');
+      body.classList.toggle('text-gray-800');
+
+      // Toggle theme classes for specific elements
+      elementsToToggle.forEach((el) => {
+        el.classList.toggle('bg-gray-900');
+        el.classList.toggle('bg-white');
+        el.classList.toggle('text-gray-100');
+        el.classList.toggle('text-gray-800');
+      });
+    }
+  </script>
+</head>
+<body class="bg-gray-800 text-gray-100">
+  <div class="container mx-auto p-6 flex gap-6">
+    <!-- Left Section -->
+    <aside class="w-1/3 bg-gray-900 shadow-md rounded-md p-6 h-[95vh] flex flex-col">
+      <div class="flex-grow">
+        <img src="<%= user.profilePhoto || 'https://via.placeholder.com/300' %>" alt="Profile Picture" class="w-72 h-72 rounded-full mx-auto mb-4 mt-6">
+        <h2 class="text-xl font-semibold text-center"><%= user.name %></h2>
+        <p class="text-sm text-gray-400 text-center mb-4 about-content"><%= user.about.description || 'A passionate individual with diverse interests.' %></p>
+      </div>
+      
+      <!-- Button -->
+      <div class="flex justify-center mt-6"> <!-- Adjusted mt-6 to move the button slightly up -->
+          <a 
+              href="/update" target="_blank"
+              class="relative group text-black bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-full px-6 py-3 text-lg font-semibold shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 no-underline overflow-hidden"
+          >
+              Update Portfolio
+              <span 
+                  class="absolute inset-0 bg-gradient-to-r from-pink-500 via-yellow-500 to-pink-500 opacity-25 group-hover:opacity-50 animate-pulse"
+              ></span>
+          </a>
+      </div>
+      <p class="text-sky-400 text-sm mt-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        *Note : Used for Entire Section Update
+      </p>
+  </aside>
+
+    <!-- Main Content -->
+    <div class="w-3/4">
+      <!-- Header -->
+      <header class="flex items-center justify-between py-4 bg-gray-900 shadow-md rounded-md">
+        <h1 class="text-3xl font-bold">&nbsp; Hi <span class="text-blue-400"><%= user.name %></span>, Welcome to the Dashboard!</h1>
+        <div class="flex items-center space-x-6">
+          <!-- Theme Toggle Button -->
+          <button onclick="toggleTheme()" class="p-2 rounded bg-yellow-400 hover:bg-yellow-500 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8-8h1m-16 0H3m15.364 6.364l-.707-.707m-11.314 0l-.707.707m12.021-12.021l-.707-.707m-11.314 0l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </button>
+          <form action="/logout" method="POST" class="inline">
+            <button type="submit" 
+                    class="text-white bg-red-500 px-4 py-2 rounded hover:bg-red-600">
+              Logout
+            </button>
+          </form>
+          
+        </div>
+      </header>
+      <br>
+      <!-- Navigation -->
+      <nav class="bg-gray-900 shadow-md rounded-md p-6 mb-6">
+        <h2 class="text-xl font-semibold mb-4"><%=user.homepage.portfolioName %> Here you can Change and Update the following Information</h2>
+        <ul class="flex space-x-4 mt-6">
+          <li>
+            <a href="/dashboard/home" 
+               class="text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-700 hover:shadow-lg transition">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="/dashboard/about" 
+               class="text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-700 hover:shadow-lg transition">
+               About
+            </a>
+          </li>
+          <li>
+            <a href="/dashboard/projects" 
+               class="text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-700 hover:shadow-lg transition">
+               Projects
+            </a>
+          </li>
+          <li>
+            <a href="/dashboard/blogs" 
+               class="text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-700 hover:shadow-lg transition">
+               Blogs
+            </a>
+          </li>
+          <li>
+            <a href="/dashboard/resume" 
+               class="text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-700 hover:shadow-lg transition">
+               Resume
+            </a>
+          </li>
+          <li>
+            <a href="/dashboard/links" 
+               class="text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-700 hover:shadow-lg transition">
+               Links
+            </a>
+          </li>
+         
+        </ul>
+        <p class="text-sky-400 text-sm mt-6">
+          *Note : Used for update
+        </p>
+      </nav>
+      
+
+      <!-- Expertise Section -->
+      <section class="bg-gray-900 shadow-md rounded-md p-6 mb-6">
+        <h2 class="text-xl font-semibold mb-4">Your Expertise</h2>
+        <div class="flex flex-wrap gap-2">
+          <% user.homepage.expertise.forEach(expertise => { %>
+            <button class="bg-yellow-800 text-yellow-100 px-4 py-2 rounded-full text-sm hover:bg-yellow-700 transition"><%= expertise %></button>
+          <% }) %>
+        </div>
+      </section>
+
+      <!-- Skillset Section -->
+      <section class="bg-gray-900 shadow-md rounded-md p-6 mb-6">
+        <h2 class="text-xl font-semibold mb-4">Your Skillset</h2>
+        <div class="flex flex-wrap gap-2">
+          <% user.about.skillset.forEach(skill => { %>
+            <button class="bg-green-800 text-green-100 px-4 py-2 rounded-full text-sm hover:bg-green-700 transition"><%= skill %></button>
+          <% }) %>
+        </div>
+      </section>
+
+      <section class="bg-gray-900 shadow-md rounded-md p-6 mb-6">
+        <h2 class="text-xl font-semibold mb-4">Your Tools</h2>
+        <div class="flex flex-wrap gap-2">
+          <% user.about.tools.forEach(tool => { %>
+            <button class="bg-purple-800 text-purple-100 px-4 py-2 rounded-full text-sm hover:bg-purple-700 transition">
+              <%= tool %>
+            </button>
+          <% }) %>
+        </div>
+      </section>
+      <section class="bg-gray-900 shadow-md rounded-md p-6 mb-6">
+        <h2 class="text-xl font-semibold mb-4">Social Media Links</h2>
+        <div class="flex flex-wrap gap-2">
+          <% if (user.socialLinks && typeof user.socialLinks === 'string') { %>
+            <% user.socialLinks.split(',').forEach(link => { %>
+              <a href="<%= link.trim() %>" target="_blank" rel="noopener noreferrer" 
+                 class="bg-blue-600 text-white px-4 py-2 rounded-full text-xs hover:bg-blue-500 transition">
+                 <%= link.trim() %>
+              </a>
+            <% }) %>
+          <% } else if (Array.isArray(user.socialLinks)) { %>
+            <% user.socialLinks.forEach(link => { %>
+              <a href="<%= link.trim() %>" target="_blank" rel="noopener noreferrer" 
+                 class="bg-blue-600 text-white px-4 py-2 rounded-full text-xs hover:bg-blue-500 transition">
+                 <%= link.trim() %>
+              </a>
+            <% }) %>
+          <% } else { %>
+            <p class="text-xs text-gray-400">No social media links added yet.</p>
+          <% } %>
+        </div>
+      </section>
+      
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
