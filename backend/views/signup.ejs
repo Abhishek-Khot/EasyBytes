@@ -5,91 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Signup - SmartTrack</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script
-    type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
-  ></script>
-  <script type="text/javascript">
-    let generatedCode;
-    let countdownInterval;
-    let countdownTime = 60; // 60 seconds
-
-    (function () {
-      emailjs.init("gtEjRMGmPWh");
-    })();
-
-    function generateCode() {
-      return Math.floor(1000 + Math.random() * 9000); // Generate a 4-digit code
-    }
-
-    function startCountdown() {
-      countdownTime = 60;
-      const countdownElement = document.getElementById("countdown");
-      countdownElement.textContent = `Code expires in: ${countdownTime} seconds`;
-
-      countdownInterval = setInterval(() => {
-        countdownTime--;
-        if (countdownTime > 0) {
-          countdownElement.textContent = `Code expires in: ${countdownTime} seconds`;
-        } else {
-          clearInterval(countdownInterval);
-          countdownElement.textContent = "Verification code expired! Please resend.";
-          generatedCode = null; // Invalidate the code
-        }
-      }, 1000);
-    }
-
-    function sendSignupEmail(event) {
-      event.preventDefault();
-
-      const email = document.getElementsByName("email")[0].value;
-      const name = document.getElementsByName("name")[0].value;
-      const password = document.getElementsByName("password")[0].value;
-
-      generatedCode = generateCode();
-
-      const params = {
-        email: email,
-        name: name,
-        password: password,
-        verification_code: generatedCode,
-        message: `Signup Notification from SmartTrack to ${name}`,
-      };
-
-      const serviceID = "";
-      const templateID = "template_jb";
-
-      emailjs
-        .send(serviceID, templateID, params)
-        .then((res) => {
-          alert("Verification code sent successfully to your email!");
-          startCountdown(); // Start the countdown
-          console.log(res);
-        })
-        .catch((err) => console.log("Failed to send email:", err));
-    }
-
-    function validateCode(event) {
-      const enteredCode = document.getElementsByName("verificationCode")[0].value;
-      if (!generatedCode) {
-        event.preventDefault();
-        alert("Verification code expired! Please resend.");
-      } else if (parseInt(enteredCode) !== generatedCode) {
-        event.preventDefault();
-        alert("Invalid verification code! Please try again.");
-      } else {
-        clearInterval(countdownInterval); // Stop the countdown
-        alert("Verification successful! Creating your account...");
-      }
-    }
-  </script>
 </head>
 <body class="min-h-screen flex items-center justify-center bg-gray-50">
   <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-10"></div>
   <div class="w-full max-w-md mx-4 overflow-hidden rounded-lg shadow-2xl bg-white/95 backdrop-blur-sm">
     <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-6 text-center">
       <h1 class="text-2xl font-bold mb-2">SmartTrack</h1>
-      <p>Due to security reasons, I didn’t add the service ID, template ID, and API key in the code above. However, you can add these values in the respective places. I used EmailJS to send the verification code via email.</p>
       <p class="text-white/90 text-sm">Create your account to get started</p>
     </div>
     <div class="p-8 -mt-6">
@@ -97,7 +18,6 @@
         action="/signup" 
         method="POST" 
         class="space-y-6"
-        onsubmit="validateCode(event)"
       >
         <!-- Full Name Input -->
         <div class="space-y-2">
@@ -140,32 +60,6 @@
             />
           </div>
         </div>
-
-        <!-- Send Verification Code Button -->
-        <button
-          type="button"
-          class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2 rounded-md font-medium hover:from-blue-700 hover:to-purple-700 transition"
-          onclick="sendSignupEmail(event)"
-        >
-          Send Verification Code to Email
-        </button>
-
-        <!-- Verification Code Input -->
-        <div class="space-y-2 mt-4">
-          <label class="block text-sm font-medium text-gray-700">Verification Code</label>
-          <div class="relative">
-            <input
-              type="text"
-              name="verificationCode"
-              placeholder="Enter the verification code"
-              class="w-full pl-4 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
-        </div>
-
-        <!-- Countdown Element -->
-        <p id="countdown" class="text-center text-sm text-red-600 mt-2"></p>
 
         <!-- Submit Button -->
         <button
