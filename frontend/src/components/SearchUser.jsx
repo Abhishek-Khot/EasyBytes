@@ -214,7 +214,7 @@ const SearchUsers = () => {
               <input
                 id="companyName"
                 type="text"
-                placeholder="Enter company name"
+                placeholder="Enter company name "
               />
               <br />
               <label htmlFor="description">Description:</label>
